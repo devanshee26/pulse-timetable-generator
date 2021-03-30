@@ -161,3 +161,7 @@ E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Administrati
 E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListRoles.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Resources\ResourcesView.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\TimeTable\TimeTableView.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Profile\ViewProfile.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Profile\EditProfile.cshtml.g.cs
