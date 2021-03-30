@@ -157,3 +157,7 @@ E:\SEMESTER6\OOSE\PROJECT\Pulse\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Ide
 E:\SEMESTER6\OOSE\PROJECT\Pulse\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ListRoles.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs

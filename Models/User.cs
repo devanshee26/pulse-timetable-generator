@@ -23,6 +23,9 @@ namespace Pulse.Models
         public string Semester { get; set; }
         [Required]
         public string Branch { get; set; }
+
+        [Required]
+        public string Role { get; set; }
         public IList<Subject> Subjects { get; set; }
     }
 }

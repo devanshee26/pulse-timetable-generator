@@ -17,21 +17,24 @@ namespace Pulse.Controllers
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
         private readonly PulseDbContext _context;
-       
+        private readonly RoleManager<IdentityRole> roleManager;
+
         public AccountController(UserManager<IdentityUser> userManager,
-                                   SignInManager<IdentityUser> signInManager, PulseDbContext context)
+                                   SignInManager<IdentityUser> signInManager, PulseDbContext context, RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             _context = context;
-           
+            this.roleManager = roleManager;
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
         {
+            ViewBag.Roles = roleManager.Roles;
             return View();
+            
         }
 
         
@@ -57,8 +60,15 @@ namespace Pulse.Controllers
                     //my user table => user added
                     _context.Add(model);
                     await _context.SaveChangesAsync();
-
-                    return RedirectToAction("login", "account");
+                    var res = await userManager.AddToRoleAsync(user, model.Role);
+                    if (res.Succeeded)
+                    {
+                        return RedirectToAction("login", "account");
+                    }
+                    foreach (var err in res.Errors)
+                    {
+                        ModelState.AddModelError("", err.Description);
+                    }
                 }
 
                 foreach (var err in result.Errors)
