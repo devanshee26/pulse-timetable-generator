@@ -1,0 +1,12 @@
+﻿@model IEnumerable<String> 
+@{
+}
+
+<a asp-action="UploadFile" asp-controller="Resources">Add Resource </a> <br>
+
+@foreach(var item in Model)
+{
+    <a asp-action="ViewResources" asp-controller="Resources" asp-route-blobName="@item"> @item </a> 
+    <a asp-action="DeleteFile" asp-route-blobName="@item" class="btn btn-danger">Delete</a>
+    <br>
+}

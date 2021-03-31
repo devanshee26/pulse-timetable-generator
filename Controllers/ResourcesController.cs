@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Pulse.Controllers
 {
    [AllowAnonymous]
-   [Route("blobs")]
+   //[Route("blobs")]
     public class ResourcesController : Controller
     {
         private readonly IUploadAzureService service;
@@ -18,7 +18,8 @@ namespace Pulse.Controllers
         {
             this.service = service;
         }
-        [HttpGet("{BlobName}")]
+
+        [HttpGet]
         public async Task<IActionResult> ViewResources(string blobName)
         {
             var data = await service.GetBlobAsync(blobName);
@@ -26,24 +27,31 @@ namespace Pulse.Controllers
           //  return View();
         }
 
-        [HttpGet("list")]
-        public async Task<IActionResult> ListBlobs()
+        [HttpGet]
+        public async Task<IActionResult> ListResources()
         {
-            return Ok(await service.ListBlobAsync());
+            IEnumerable<string> resources = await service.ListBlobAsync();
+            return View(resources);
+        }
+        [HttpGet]
+        public IActionResult UploadFile()
+        {
+            return View();
         }
 
-        [HttpPost("uploadfile")]
-        public async Task<IActionResult> UploadFile([FromBody] UploadFileRequest request)
+        [HttpPost]
+        public async Task<IActionResult> UploadFile(UploadFileRequest request)
         {
+
             await service.UploadFileBlobAsync(request.FilePath, request.FileName);
-            return Ok();
+            return RedirectToAction("ListResources", "Resources");
         }
         
-        [HttpDelete("{blobName}")]
+        [HttpGet]
         public async Task<IActionResult> DeleteFile(string blobName)
         {
             await service.DeleteBlobAsync(blobName);
-            return Ok();
+            return RedirectToAction("ListResources", "Resources");
         }
 
 
