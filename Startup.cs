@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pulse.Data;
+using Pulse.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,11 @@ namespace Pulse
             //connection
             services.AddDbContextPool<PulseDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("PulseDbContext")));
+
+            //azure connection
+            services.AddSingleton(x => new BlobServiceClient(Configuration.GetValue<string>(key: "BlobConnectionString")));
+            //service instance for upload service
+            services.AddSingleton<IUploadAzureService, UploadAzureService>();
 
             //identity
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<PulseDbContext>();

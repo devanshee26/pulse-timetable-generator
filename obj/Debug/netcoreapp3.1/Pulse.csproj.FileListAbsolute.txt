@@ -165,3 +165,7 @@ E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\TimeTable\Ti
 E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Profile\ViewProfile.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Profile\EditProfile.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT\Pulse\obj\Debug\netcoreapp3.1\Razor\Views\Resources\ViewResources.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT\Pulse\bin\Debug\netcoreapp3.1\Azure.Core.dll
+E:\SEMESTER6\OOSE\PROJECT\Pulse\bin\Debug\netcoreapp3.1\Azure.Storage.Blobs.dll
+E:\SEMESTER6\OOSE\PROJECT\Pulse\bin\Debug\netcoreapp3.1\Azure.Storage.Common.dll
+E:\SEMESTER6\OOSE\PROJECT\Pulse\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
