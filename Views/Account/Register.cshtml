@@ -42,10 +42,9 @@
             <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
                 <select asp-for="Role" class="form-control">
-                    @foreach(var r in roles)
-                    {
-                        <option>@r.Name</option>
-                    }
+                    <option>Student</option>
+                    <option>Faculty</option>
+                    <option>Admin</option>
                 </select>
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
