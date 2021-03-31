@@ -14,9 +14,14 @@ namespace Pulse.Data
         {
 
         }
+       
 
         public DbSet<User> User { get; set; }
         public DbSet<Subject> Subject { get; set; }
         public DbSet<TimeTable> TimeTable { get; set; }
+        public DbSet<Resources> Resources { get; set; }
+
+      
+
     }
 }

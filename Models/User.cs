@@ -27,5 +27,8 @@ namespace Pulse.Models
         [Required]
         public string Role { get; set; }
         public IList<Subject> Subjects { get; set; }
+
+     //   public ICollection<Resources> Resources { get; set; }
+
     }
 }

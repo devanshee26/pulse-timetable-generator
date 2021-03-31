@@ -26,10 +26,16 @@ namespace Pulse.Controllers
             this.signInManager = signInManager;
         }
         [HttpGet]
-        public IActionResult ViewProfile()
+        public  IActionResult ViewProfile(int? userid)
         {
             if (ModelState.IsValid)
             {
+                if(userid != null)
+                {
+                    
+                    var otheruser = context.User.SingleOrDefault(x => x.Id == userid);
+                    return View(otheruser);
+                }
                 var currentuser = context.User.SingleOrDefault(x => x.Email == User.Identity.Name);
                 return View(currentuser);
             }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pulse.Data;
 
 namespace Pulse.Migrations
 {
     [DbContext(typeof(PulseDbContext))]
-    partial class PulseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210331174656_Resources User")]
+    partial class ResourcesUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,6 +236,8 @@ namespace Pulse.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Resources");
                 });
 
@@ -372,6 +376,15 @@ namespace Pulse.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pulse.Models.Resources", b =>
+                {
+                    b.HasOne("Pulse.Models.User", null)
+                        .WithMany("Resources")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Pulse.Models.Subject", b =>
                 {
                     b.HasOne("Pulse.Models.TimeTable", null)
@@ -390,6 +403,8 @@ namespace Pulse.Migrations
 
             modelBuilder.Entity("Pulse.Models.User", b =>
                 {
+                    b.Navigation("Resources");
+
                     b.Navigation("Subjects");
                 });
 #pragma warning restore 612, 618
