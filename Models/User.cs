@@ -28,6 +28,8 @@ namespace Pulse.Models
         public string Role { get; set; }
         public IList<Subject> Subjects { get; set; }
 
+        public Course Course { get; set; }
+
      //   public ICollection<Resources> Resources { get; set; }
 
     }
