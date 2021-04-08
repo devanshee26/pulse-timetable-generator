@@ -32,8 +32,8 @@
                     <td>
                         <a asp-action="EditRole" asp-controller="Administration" class="btn btn-primary" asp-route-roleId="@item.Id">Edit</a>
                       |
-                        
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id /* id=item.PrimaryKey */ })
+                       <a asp-action="ViewUsers" asp-controller="Administration" class="btn btn-primary" asp-route-roleId="@item.Id">View Users</a> 
+                       
                     </td>
                 </tr>
             }

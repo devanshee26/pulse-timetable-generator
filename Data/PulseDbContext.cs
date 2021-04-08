@@ -16,29 +16,20 @@ namespace Pulse.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
 
-            modelBuilder.Entity<User>()
-                .HasOne<Course>(u => u.Course)
-                .WithOne(p => p.Faculty)
-                .HasForeignKey<Course>(fk => fk.CourseByFacultyId);
-                
-
-
-            modelBuilder.Entity<DaysSlots>()
-                .HasKey(bc => new { bc.DaysId, bc.SlotsId});
         }
 
-
         public DbSet<User> User { get; set; }
-        public DbSet<Subject> Subject { get; set; }
         public DbSet<TimeTable> TimeTable { get; set; }
         public DbSet<Resources> Resources { get; set; }
-
         public DbSet<Course> Courses { get; set; }
-
-      
+        public DbSet<Schedule> Schedules { get; set; }
+       
 
     }
 }

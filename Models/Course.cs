@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,8 +14,8 @@ namespace Pulse.Models
         public int Semester { get; set; }
         public string Department { get; set; }
 
-
-        public int CourseByFacultyId { get; set; }  //foreign key
+        public int CourseByFacultyId { get; set; }
+        [ForeignKey("CourseByFacultyId")]
         public User Faculty { get; set; }
     }
 }

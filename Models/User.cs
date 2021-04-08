@@ -12,7 +12,6 @@ namespace Pulse.Models
         public int Id { get; set; }
         [Required]
         public string Email { get; set; }
-
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -26,11 +25,5 @@ namespace Pulse.Models
 
         [Required]
         public string Role { get; set; }
-        public IList<Subject> Subjects { get; set; }
-
-        public Course Course { get; set; }
-
-     //   public ICollection<Resources> Resources { get; set; }
-
     }
 }

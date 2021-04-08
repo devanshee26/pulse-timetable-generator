@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pulse.Data;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pulse.Controllers
 {
+    [Authorize]
     public class CourseController : Controller
     {
         private readonly PulseDbContext context;
@@ -21,14 +23,31 @@ namespace Pulse.Controllers
             this.userManager = userManager;
         }
 
+
+        [Authorize(Roles ="Admin")]
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public  IActionResult Create()
         {
             var temp = context.User;
-            var faculties = await temp.ToListAsync();
-            ViewBag.faculties = faculties;
+            var faculties = temp.Where(f => f.Role == "Faculty");
+            var occupiedf = context.Courses.Select(c => c.CourseByFacultyId);
+            List<User> model = new List<User>();
+            foreach (var f in faculties)
+            {
+                if (occupiedf.Contains(f.Id))
+                {
+                    continue;
+                }
+                else
+                {
+                    model.Add(f);
+                }
+            }
+            ViewBag.faculties = model;
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(Course course)
         {
@@ -54,12 +73,16 @@ namespace Pulse.Controllers
             var courses = await temp.ToListAsync();
             return View(courses);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
             var course = context.Courses.FirstOrDefault(c => c.CourseId == id);
             return View(course);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Edit(Course course)
         {
@@ -78,6 +101,7 @@ namespace Pulse.Controllers
            
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Delete(int id) 
         {

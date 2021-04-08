@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SEMESTER6\\OOSE\\PROJECT\\Pulse\\Pulse.csproj": {}
+    "E:\\SEMESTER6\\OOSE\\PROJECT-STEP-BACK\\pulse-timetable-generator\\Pulse.csproj": {}
   },
   "projects": {
-    "E:\\SEMESTER6\\OOSE\\PROJECT\\Pulse\\Pulse.csproj": {
+    "E:\\SEMESTER6\\OOSE\\PROJECT-STEP-BACK\\pulse-timetable-generator\\Pulse.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SEMESTER6\\OOSE\\PROJECT\\Pulse\\Pulse.csproj",
+        "projectUniqueName": "E:\\SEMESTER6\\OOSE\\PROJECT-STEP-BACK\\pulse-timetable-generator\\Pulse.csproj",
         "projectName": "Pulse",
-        "projectPath": "E:\\SEMESTER6\\OOSE\\PROJECT\\Pulse\\Pulse.csproj",
+        "projectPath": "E:\\SEMESTER6\\OOSE\\PROJECT-STEP-BACK\\pulse-timetable-generator\\Pulse.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "E:\\SEMESTER6\\OOSE\\PROJECT\\Pulse\\obj\\",
+        "outputPath": "E:\\SEMESTER6\\OOSE\\PROJECT-STEP-BACK\\pulse-timetable-generator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",

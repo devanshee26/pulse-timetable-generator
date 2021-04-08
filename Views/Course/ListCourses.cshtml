@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Pulse.Models.Course>
 
 @{
-    ViewData["Title"] = "Courses";
+    ViewData["Title"] = "ListCourses";
 }
 
 <h1>ListCourses</h1>
@@ -28,48 +28,37 @@
                 @Html.DisplayNameFor(model => model.Department)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CourseByFacultyId)
+                @Html.DisplayNameFor(model => model.Faculty.Name)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @if (Model.Any())
-        {
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CourseId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LecturesPerWeek)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Semester)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Department)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CourseByFacultyId)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id= item.CourseId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
-                    </td>
-                </tr>
-            }
-        }
-        else
-        {
-            <div class="container">
-                <h3>No Courses Added.</h3>
-            </div>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LecturesPerWeek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semester)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                <a asp-controller="Profile" asp-action="ViewProfile" asp-route-userid="@item.CourseByFacultyId">@item.CourseByFacultyId</a>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = @item.CourseId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = @item.CourseId })
+            </td>
+        </tr>
+}
     </tbody>
 </table>

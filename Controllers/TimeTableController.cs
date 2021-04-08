@@ -13,6 +13,7 @@ namespace Pulse.Controllers
         [HttpGet]
         public IActionResult ViewTimeTable()
         {
+
             return View();
         }
     }

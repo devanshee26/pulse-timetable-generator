@@ -55,12 +55,13 @@ namespace Pulse.Controllers
             ViewBag.Others = Others;
             return View(resources);
         }
+        [Authorize(Roles ="Admin, Faculty")]
         [HttpGet]
         public IActionResult UploadFile()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin, Faculty")]
         [HttpPost]
         public async Task<IActionResult> UploadFile(Resources resources)
         {
@@ -88,7 +89,7 @@ namespace Pulse.Controllers
 
             return RedirectToAction("ListResources", "Resources");
         }
-        
+        [Authorize(Roles = "Admin, Faculty")]
         [HttpGet]
         public async Task<IActionResult> DeleteFile(string blobName)
         {

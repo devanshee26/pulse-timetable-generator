@@ -1,0 +1,34 @@
+﻿@model Pulse.ViewModels.EditRoleViewModel
+@using Microsoft.AspNetCore.Identity
+@inject RoleManager<IdentityRole> RoleManager
+
+
+        @{
+            ViewData["Title"] = "Users";
+            
+        }
+
+
+
+        <div class="container">
+            <h3>Users under the role : @Model.RoleName</h3>
+            <hr />
+            @if (Model.UsersUnderThisRole.Any())
+            {
+                foreach (var usr in Model.UsersUnderThisRole)
+                {
+                    <h4>@usr</h4>
+                }
+            }
+            else
+            {
+                <div>
+                    No Users Under This Role.
+                </div>
+            }
+
+        </div>
+
+        <br />
+        <br />
+        <hr />

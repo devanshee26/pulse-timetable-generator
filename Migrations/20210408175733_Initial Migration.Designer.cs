@@ -10,8 +10,8 @@ using Pulse.Data;
 namespace Pulse.Migrations
 {
     [DbContext(typeof(PulseDbContext))]
-    [Migration("20210401082010_Courses")]
-    partial class Courses
+    [Migration("20210408175733_Initial Migration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -230,6 +230,9 @@ namespace Pulse.Migrations
                     b.Property<string>("Department")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("FacultyId")
+                        .HasColumnType("int");
+
                     b.Property<int>("LecturesPerWeek")
                         .HasColumnType("int");
 
@@ -241,40 +244,9 @@ namespace Pulse.Migrations
 
                     b.HasKey("CourseId");
 
-                    b.HasIndex("CourseByFacultyId")
-                        .IsUnique();
+                    b.HasIndex("FacultyId");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("Pulse.Models.Days", b =>
-                {
-                    b.Property<int>("DaysId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Day")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("DaysId");
-
-                    b.ToTable("Days");
-                });
-
-            modelBuilder.Entity("Pulse.Models.DaysSlots", b =>
-                {
-                    b.Property<int>("DaysId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SlotsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DaysId", "SlotsId");
-
-                    b.HasIndex("SlotsId");
-
-                    b.ToTable("DaysSlots");
                 });
 
             modelBuilder.Entity("Pulse.Models.Resources", b =>
@@ -299,71 +271,22 @@ namespace Pulse.Migrations
                     b.ToTable("Resources");
                 });
 
-            modelBuilder.Entity("Pulse.Models.Slots", b =>
-                {
-                    b.Property<int>("SlotsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DurationOfEachSlot")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NoOfSlotsEachDay")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("SlotsId");
-
-                    b.ToTable("Slots");
-                });
-
-            modelBuilder.Entity("Pulse.Models.Subject", b =>
-                {
-                    b.Property<int>("SubjectId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Branch")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Semester")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TimeTableId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SubjectId");
-
-                    b.HasIndex("TimeTableId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Subject");
-                });
-
             modelBuilder.Entity("Pulse.Models.TimeTable", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TimeTableId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Course1Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Day")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("TimeTableId");
+
+                    b.HasIndex("Course1Id");
 
                     b.ToTable("TimeTable");
                 });
@@ -458,64 +381,22 @@ namespace Pulse.Migrations
             modelBuilder.Entity("Pulse.Models.Course", b =>
                 {
                     b.HasOne("Pulse.Models.User", "Faculty")
-                        .WithOne("Course")
-                        .HasForeignKey("Pulse.Models.Course", "CourseByFacultyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Faculty");
                 });
 
-            modelBuilder.Entity("Pulse.Models.DaysSlots", b =>
-                {
-                    b.HasOne("Pulse.Models.Days", "Day")
-                        .WithMany("DaysSlots")
-                        .HasForeignKey("DaysId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Pulse.Models.Slots", "Slot")
-                        .WithMany("DaysSlots")
-                        .HasForeignKey("SlotsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Day");
-
-                    b.Navigation("Slot");
-                });
-
-            modelBuilder.Entity("Pulse.Models.Subject", b =>
-                {
-                    b.HasOne("Pulse.Models.TimeTable", null)
-                        .WithMany("Subjects")
-                        .HasForeignKey("TimeTableId");
-
-                    b.HasOne("Pulse.Models.User", null)
-                        .WithMany("Subjects")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Pulse.Models.Days", b =>
-                {
-                    b.Navigation("DaysSlots");
-                });
-
-            modelBuilder.Entity("Pulse.Models.Slots", b =>
-                {
-                    b.Navigation("DaysSlots");
-                });
-
             modelBuilder.Entity("Pulse.Models.TimeTable", b =>
                 {
-                    b.Navigation("Subjects");
-                });
+                    b.HasOne("Pulse.Models.Course", "Course1")
+                        .WithMany()
+                        .HasForeignKey("Course1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("Pulse.Models.User", b =>
-                {
-                    b.Navigation("Course");
-
-                    b.Navigation("Subjects");
+                    b.Navigation("Course1");
                 });
 #pragma warning restore 612, 618
         }

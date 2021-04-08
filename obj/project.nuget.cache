@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+lRB1kWRD4cPAR627uuI9erz07omWpGAZYNdxA53sqpp5CGDjr3CgKHibEvNaJDiiu+iwhRZPG0T1L0WMbEdmA==",
+  "dgSpecHash": "pycj5L/R8N4eKazgSoVsow32XmmPIgKQnjrnfxVDzJiXPOddyY7kXFVImNoCgXWxC6mHjQxKqLfjiDUlRPGzFg==",
   "success": true,
-  "projectFilePath": "E:\\SEMESTER6\\OOSE\\PROJECT\\Pulse\\Pulse.csproj",
+  "projectFilePath": "E:\\SEMESTER6\\OOSE\\PROJECT-STEP-BACK\\pulse-timetable-generator\\Pulse.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LENOVO\\.nuget\\packages\\azure.core\\1.8.1\\azure.core.1.8.1.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\azure.storage.blobs\\12.8.1\\azure.storage.blobs.12.8.1.nupkg.sha512",

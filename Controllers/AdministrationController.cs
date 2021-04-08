@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pulse.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles ="Admin")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -109,6 +109,31 @@ namespace Pulse.Controllers
 
             }         
         }
-       
+
+       [HttpGet]
+        public async Task<IActionResult> ViewUsers(string roleId)
+        {
+            var role = await roleManager.FindByIdAsync(roleId);
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with the id {roleId} is Not Found.";
+                return View("NotFound");
+            }
+            var model = new EditRoleViewModel
+            {
+                Id = role.Id,
+                RoleName = role.Name
+            };
+
+            foreach (var usr in userManager.Users)
+            {
+                if (await userManager.IsInRoleAsync(usr, role.Name))
+                {
+                    model.UsersUnderThisRole.Add(usr.UserName);
+                }
+            }
+          
+            return View(model);
+        }
     }
 }
