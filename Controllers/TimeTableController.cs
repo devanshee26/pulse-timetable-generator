@@ -36,6 +36,7 @@ namespace Pulse.Controllers
         {
             if(branch == null || semester < 1)
             {
+                ViewBag.Message = "Schedule is not generated yet!";
                 return View("ViewTimeTable");
             }
             if (ModelState.IsValid)
@@ -63,7 +64,7 @@ namespace Pulse.Controllers
 
 
             }
-            return View();
+            return RedirectToAction("ViewTimeTable");
         }
 
         [HttpGet]
@@ -171,7 +172,7 @@ namespace Pulse.Controllers
 
                 context.Add(schedule);
                 await context.SaveChangesAsync();
-                return RedirectToAction("ViewSchedule");
+                return RedirectToAction("ViewTimeTable");
             }
             return View();
         }
