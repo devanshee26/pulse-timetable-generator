@@ -15,7 +15,10 @@ namespace Pulse.Models
         public string Department { get; set; }
 
         public int CourseByFacultyId { get; set; }
+
         [ForeignKey("CourseByFacultyId")]
         public User Faculty { get; set; }
+
+        ICollection<TimeTable> TimeTables { get; set; }
     }
 }

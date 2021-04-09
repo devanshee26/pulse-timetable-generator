@@ -384,7 +384,6 @@ E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcorea
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\Shared\NotFound.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\TimeTable\TimeTableView.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Pulse.RazorTargetAssemblyInfo.cache
@@ -395,3 +394,6 @@ E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcorea
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Pulse.pdb
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Pulse.genruntimeconfig.cache
 E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ViewUsers.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\TimeTable\CreateTimeTable.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\TimeTable\ViewTimeTable.cshtml.g.cs
+E:\SEMESTER6\OOSE\PROJECT-STEP-BACK\pulse-timetable-generator\obj\Debug\netcoreapp3.1\Razor\Views\TimeTable\ViewSchedule.cshtml.g.cs

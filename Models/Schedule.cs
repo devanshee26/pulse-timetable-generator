@@ -16,6 +16,8 @@ namespace Pulse.Models
         public int StartTime { get; set; }
         public int EachSlotTime { get; set; }
 
+        public int NoOfWorkingDays { get; set; }
+        public int NoOfSlotsEachDay { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         [Required(AllowEmptyStrings = true)]

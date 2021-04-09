@@ -1,0 +1,63 @@
+﻿@model Pulse.Models.Schedule
+
+@{
+    ViewData["Title"] = "CreateTimeTable";
+}
+
+
+
+<h4>Schedule</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateTimeTable" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Semester" class="control-label"></label>
+                <input asp-for="Semester" class="form-control" />
+                <span asp-validation-for="Semester" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Branch" class="control-label"></label>
+                <input asp-for="Branch" class="form-control" />
+                <span asp-validation-for="Branch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoOfWorkingDays" class="control-label">1-5</label>
+                <input asp-for="NoOfWorkingDays" class="form-control" />
+                <span asp-validation-for="NoOfWorkingDays" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoOfSlotsEachDay" class="control-label">1-6</label>
+                <input asp-for="NoOfSlotsEachDay" class="form-control" />
+                <span asp-validation-for="NoOfSlotsEachDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input asp-for="StartTime" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EachSlotTime" class="control-label"></label>
+                <input asp-for="EachSlotTime" class="form-control" />
+                <span asp-validation-for="EachSlotTime" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ViewTimeTable">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

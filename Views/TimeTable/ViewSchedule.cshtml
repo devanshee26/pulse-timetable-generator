@@ -1,0 +1,83 @@
+﻿@model Pulse.ViewModels.ViewFullScheduleViewModel;
+@{
+    int slot = Model.Schedule.EachSlotTime;
+    int starttime = Model.Schedule.StartTime;
+    List<Course> courses = ViewBag.Courses;
+}
+
+@functions{
+    string getSubject(int courseid)
+    {
+        string answer="";
+        List<Course> courses = ViewBag.Courses;
+        foreach(var course in courses)
+        {
+            if(course.CourseId == @courseid)
+            {
+                answer = course.Name;
+                break;
+            }
+        }
+        return answer;
+    }
+    }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+        </script>
+
+    }
+
+    <h3>Branch :  @Model.Schedule.Branch</h3>
+    <h3>Semester : @Model.Schedule.Semester</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Days</th>
+                @for (int i = 0; i < 6; i++)
+                {
+                    <th>@(@starttime + @slot *@i):00</th>
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var day in Model.Days)
+            {
+            <tr>
+
+                <td>@day.Day</td>
+
+                <td>@getSubject(@day.Course1Id)</td>
+                <td>@getSubject(@day.Course2Id)</td>
+                <td>@getSubject(@day.Course3Id)</td>
+                <td>@getSubject(@day.Course4Id)</td>
+                <td>@getSubject(@day.Course5Id)</td>
+                <td>@getSubject(@day.Course6Id)</td>
+                
+            </tr>
+            }
+
+        </tbody>
+
+        
+
+
+    </table>
+</body>
+</html>  
