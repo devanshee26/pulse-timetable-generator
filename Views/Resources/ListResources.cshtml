@@ -5,7 +5,9 @@
     ViewData["Title"] = "Resources";
     List<Pulse.Models.Resources> MyResources = ViewBag.MyResources;
     List<Pulse.Models.Resources> Others = ViewBag.Others;
+   
 }
+
 
 
 
@@ -34,7 +36,10 @@
                     Subject ID
                 </th>
                 <th>
-                    Faculty ID
+                    Faculty
+                </th>
+                <th>
+                    View
                 </th>
             </tr>
         </thead>
@@ -44,25 +49,22 @@
 
                 @foreach (var item in Others)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FileName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SubjectId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserId)
-                    </td>
-                    <td>
-                        <a asp-action="ViewProfile" asp-controller="Profile" asp-route-userid="@item.UserId"> User ID </a> |
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubjectId)
+                        </td>
+                        <td>
+                            <a asp-action="ViewProfile" asp-controller="Profile" asp-route-userid="@item.UserId"> @item.UserId </a> 
 
-                    </td>
-                    <td>
-                        <a asp-action="ViewResources" asp-controller="Resources" asp-route-blobName="@item.FileName"> View </a> |
+                        </td>
+                        <td>
+                            <a asp-action="ViewResources" asp-controller="Resources" asp-route-blobName="@item.FileName"> View </a>
 
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 }
             </tbody>
         }
@@ -86,9 +88,7 @@
                     <th>
                         Subject ID
                     </th>
-                    <th>
-                        Faculty ID
-                    </th>
+
                 </tr>
             </thead>
 
@@ -96,21 +96,19 @@
             <tbody>
                 @foreach (var item in MyResources)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FileName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SubjectId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserId)
-                    </td>
-                    <td>
-                        <a asp-action="ViewResources" asp-controller="Resources" asp-route-blobName="@item.FileName"> View </a> |
-                        <a asp-action="DeleteFile" asp-route-blobName="@item.FileName" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubjectId)
+                        </td>
+
+                        <td>
+                            <a asp-action="ViewResources" asp-controller="Resources" asp-route-blobName="@item.FileName"> View </a> |
+                            <a asp-action="DeleteFile" asp-route-blobName="@item.FileName" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

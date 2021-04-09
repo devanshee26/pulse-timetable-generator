@@ -1,14 +1,36 @@
 ﻿@model IEnumerable<Pulse.Models.Course>
-
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 @{
-    ViewData["Title"] = "ListCourses";
+    ViewData["Title"] = "List Courses";
+    var faculties = ViewBag.Faculties;
 }
 
-<h1>ListCourses</h1>
+@functions{
+    string fname(int fid)
+    {
+        string name = "";
+        var faculties = ViewBag.Faculties;
+        foreach (var f in faculties)
+        {
+            if (f.Id == @fid)
+            {
+                name = f.Name;
+            }
+        }
+        return name;
+    }
+}
 
+<h1>Courses</h1>
+
+@if (User.IsInRole("Admin"))
+{
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -34,7 +56,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CourseId)
@@ -52,13 +75,17 @@
                 @Html.DisplayFor(modelItem => item.Department)
             </td>
             <td>
-                <a asp-controller="Profile" asp-action="ViewProfile" asp-route-userid="@item.CourseByFacultyId">@item.CourseByFacultyId</a>
+                <a asp-controller="Profile" asp-action="ViewProfile" asp-route-userid="@item.CourseByFacultyId">@fname(item.CourseByFacultyId)</a>
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = @item.CourseId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = @item.CourseId })
-            </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = @item.CourseId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = @item.CourseId })
+                </td>
+            }
+
         </tr>
-}
+        }
     </tbody>
 </table>

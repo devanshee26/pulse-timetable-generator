@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pulse.Data;
 using Pulse.Models;
 using Pulse.Services;
@@ -27,6 +28,7 @@ namespace Pulse.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewResources(string blobName)
         {
+            
             var data = await service.GetBlobAsync(blobName);
             return File(data.content, data.contentType);
           //  return View();
@@ -51,14 +53,18 @@ namespace Pulse.Controllers
                     Others.Add(rcs);
                 }
             }
+            
             ViewBag.MyResources = MyResources;
             ViewBag.Others = Others;
             return View(resources);
         }
         [Authorize(Roles ="Admin, Faculty")]
         [HttpGet]
-        public IActionResult UploadFile()
+        public async Task<IActionResult> UploadFile()
         {
+            var temp = context.Courses;
+            List<Course> courses = await temp.ToListAsync();
+            ViewBag.Courses = courses;
             return View();
         }
         [Authorize(Roles = "Admin, Faculty")]

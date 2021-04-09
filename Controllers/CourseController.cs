@@ -68,8 +68,10 @@ namespace Pulse.Controllers
         [HttpGet]
         public async Task<IActionResult> ListCourses()
         {
-
+            var temp1 = context.User;
+            var faculties = temp1.ToList().Where(f=> f.Role == "Faculty");
             var temp = context.Courses;
+            ViewBag.Faculties = faculties;
             var courses = await temp.ToListAsync();
             return View(courses);
         }
@@ -78,6 +80,9 @@ namespace Pulse.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            var temp1 = context.User;
+            var faculties = temp1.ToList().Where(f => f.Role == "Faculty");
+            ViewBag.Faculties = faculties;
             var course = context.Courses.FirstOrDefault(c => c.CourseId == id);
             return View(course);
         }

@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
-
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 @{
-    ViewData["Title"] = "ListRoles";
+    ViewData["Title"] = "List of Roles";
 }
 
 <h1>Roles</h1>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-controller="Administration" asp-action="CreateRole">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-controller="Administration" asp-action="CreateRole">Create New</a>
-</p>
 
 @if (Model.Any())
 {
@@ -17,7 +21,7 @@
         <thead>
             <tr>
                 <th>
-                   Role Names
+                    Role Names
                 </th>
                 <th></th>
             </tr>
@@ -31,9 +35,9 @@
                     </td>
                     <td>
                         <a asp-action="EditRole" asp-controller="Administration" class="btn btn-primary" asp-route-roleId="@item.Id">Edit</a>
-                      |
-                       <a asp-action="ViewUsers" asp-controller="Administration" class="btn btn-primary" asp-route-roleId="@item.Id">View Users</a> 
-                       
+                        |
+                        <a asp-action="ViewUsers" asp-controller="Administration" class="btn btn-primary" asp-route-roleId="@item.Id">View Users</a>
+
                     </td>
                 </tr>
             }

@@ -1,36 +1,64 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 @{
+    ViewData["Title"] = "Time Table";
 }
 
-
-<!DOCTYPE html>
-
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <a asp-controller="TimeTable" asp-action="CreateTimeTable">Create Scheudle</a>
-    <br />
-
-    <form asp-controller="TimeTable" asp-action="ViewSchedule" method="post">
-        <input type="text" id="branch" name="branch" />
-        <input type="text" id="semester" name="semester" />
-        <input type="submit" value="View" />
-    </form>
     @if (ViewBag.Message != null)
     {
-        <script type="text/javascript">
-
-            window.onload = function () {
-                alert("@ViewBag.Message");
-               
-            };
-        </script>
+        <div class="alert alert-danger">
+            <p>The Schedule is not yet generated!</p>
+        </div>
         ViewBag.Message = null;
     }
-</body>
-</html>  
+</head>
+
+
+
+
+<h3>Time Table</h3>
+@if (User.IsInRole("Admin"))
+{
+    <hr />
+    <a asp-controller="TimeTable" asp-action="CreateTimeTable">Generate Scheudle</a>
+    <br />
+}
+<hr />
+<h5>View TimeTable</h5>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="TimeTable" asp-action="ViewSchedule" method="post">
+            <div class="form-group">
+                <label class="control-label">Semester</label>
+                <select id="semester" name="semester" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Department</label>
+                <select id="branch" name="branch" class="form-control">
+                    <option value="ce">Computer Engineering</option>
+                    <option value="ec">Electronics and Communication</option>
+                    <option value="it">Information Technology</option>
+                    <option value="cl">Civil Engineering</option>
+                    <option value="ic">Instumentation and Control</option>
+                    <option value="mh">Mechanical Engineering</option>
+                </select>
+
+            </div>
+
+
+            <input type="submit" value="View" />
+        </form>
+    </div>
+</div>
+

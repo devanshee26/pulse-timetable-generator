@@ -5,8 +5,6 @@
     var faculties = ViewBag.faculties;
 }
 
-<h1>Create</h1>
-
 <h4>Course</h4>
 <hr />
 <div class="row">
@@ -15,31 +13,55 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
            
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Course Name</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LecturesPerWeek" class="control-label"></label>
-                <input asp-for="LecturesPerWeek" class="form-control" />
+                <label asp-for="LecturesPerWeek" class="control-label">Number of Lectures Per Week</label>
+                <select asp-for="LecturesPerWeek" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
                 <span asp-validation-for="LecturesPerWeek" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Semester" class="control-label"></label>
-                <input asp-for="Semester" class="form-control" />
+                <select asp-for="Semester" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+
+                </select>
                 <span asp-validation-for="Semester" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Department" class="control-label"></label>
-                <input asp-for="Department" class="form-control" />
+                <label asp-for="Department" class="control-label">Branch</label>
+                <select asp-for="Department" class="form-control">
+                    <option value="ce">Computer Engineering</option>
+                    <option value="ec">Electronics and Communication</option>
+                    <option value="it">Information Technology</option>
+                    <option value="cl">Civil Engineering</option>
+                    <option value="ic">Instumentation and Control</option>
+                    <option value="mh">Mechanical Engineering</option>
+                </select>
                 <span asp-validation-for="Department" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CourseByFacultyId" class="control-label"></label>
-                <select asp-for="CourseByFacultyId">
+                <label asp-for="CourseByFacultyId" class="control-label">Faculty Alloted For The Course <br />( Branch | Semester | Name ) </label>
+                <select asp-for="CourseByFacultyId" class="form-control">
                     @foreach (var fac in faculties)
                     {
-                        <option value="@fac.Id">@fac.Name</option>
+                        <option value="@fac.Id">@fac.Branch.ToUpper() | @fac.Semester | @fac.Name</option>
                     }
                 </select>
                 <span asp-validation-for="CourseByFacultyId" class="text-danger"></span>
@@ -52,7 +74,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ListCourses">Back to Courses</a>
 </div>
 
 @section Scripts {

@@ -36,7 +36,7 @@ namespace Pulse.Controllers
         {
             if(branch == null || semester < 1)
             {
-                return RedirectToAction("ViewTimeTable");
+                return View("ViewTimeTable");
             }
             if (ModelState.IsValid)
             {
@@ -44,7 +44,7 @@ namespace Pulse.Controllers
                 if(schedule == null)
                 {
                     ViewBag.Message = "Schedule is not generated yet!";
-                    return RedirectToAction("ViewTimeTable");
+                    return View("ViewTimeTable");
 
                 }
                 ViewFullScheduleViewModel model = new ViewFullScheduleViewModel();

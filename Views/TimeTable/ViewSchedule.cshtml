@@ -1,5 +1,7 @@
 ﻿@model Pulse.ViewModels.ViewFullScheduleViewModel;
+
 @{
+    ViewData["Title"] = "View Schedule";
     int slot = Model.Schedule.EachSlotTime;
     int starttime = Model.Schedule.StartTime;
     List<Course> courses = ViewBag.Courses;
@@ -8,11 +10,11 @@
 @functions{
     string getSubject(int courseid)
     {
-        string answer="";
+        string answer = "";
         List<Course> courses = ViewBag.Courses;
-        foreach(var course in courses)
+        foreach (var course in courses)
         {
-            if(course.CourseId == @courseid)
+            if (course.CourseId == @courseid)
             {
                 answer = course.Name;
                 break;
@@ -20,16 +22,9 @@
         }
         return answer;
     }
-    }
+}
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 
 
     @if (ViewBag.Message != null)
@@ -43,7 +38,7 @@
 
     }
 
-    <h3>Branch :  @Model.Schedule.Branch</h3>
+    <h3>Branch :  @Model.Schedule.Branch.ToUpper()</h3>
     <h3>Semester : @Model.Schedule.Semester</h3>
     <table class="table">
         <thead>
@@ -59,25 +54,24 @@
         <tbody>
             @foreach (var day in Model.Days)
             {
-            <tr>
+                <tr>
 
-                <td>@day.Day</td>
+                    <td>@day.Day</td>
 
-                <td>@getSubject(@day.Course1Id)</td>
-                <td>@getSubject(@day.Course2Id)</td>
-                <td>@getSubject(@day.Course3Id)</td>
-                <td>@getSubject(@day.Course4Id)</td>
-                <td>@getSubject(@day.Course5Id)</td>
-                <td>@getSubject(@day.Course6Id)</td>
-                
-            </tr>
+                    <td>@getSubject(@day.Course1Id)</td>
+                    <td>@getSubject(@day.Course2Id)</td>
+                    <td>@getSubject(@day.Course3Id)</td>
+                    <td>@getSubject(@day.Course4Id)</td>
+                    <td>@getSubject(@day.Course5Id)</td>
+                    <td>@getSubject(@day.Course6Id)</td>
+
+                </tr>
             }
 
         </tbody>
 
-        
+
 
 
     </table>
-</body>
-</html>  
+
